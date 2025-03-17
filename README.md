@@ -1,54 +1,51 @@
-# React + TypeScript + Vite
+# OS Resource Management Algorithms Implementation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [OS Resource Management Algorithms Implementation](#os-resource-management-algorithms-implementation)
+  - [Algorithms](#algorithms)
+  - [Preview](#preview)
+    - [Safety Algorithm](#safety-algorithm)
+    - [Banker Algorithm](#banker-algorithm)
+    - [Deadlock-Detection Algorithm](#deadlock-detection-algorithm)
+      - [Image 1](#image-1)
+      - [Image 2](#image-2)
+  - [How to Run](#how-to-run)
+  - [Author](#author)
 
-Currently, two official plugins are available:
+## Algorithms
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Safety Algorithm
+- Banker Algorithm (Requesting Algorithm)
+- Deadlock-Detection Algorithm
 
-## Expanding the ESLint configuration
+## Preview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Safety Algorithm
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+![Safety 1](./docs/images/Safety1.png)
+
+### Banker Algorithm
+
+![Banker 1](./docs/images/Banker1.png)
+
+### Deadlock-Detection Algorithm
+
+#### Image 1
+
+![Deadlock 1](./docs/images/Deadlock1.png)
+
+#### Image 2
+
+![Deadlock 2](./docs/images/Deadlock2.png)
+
+## How to Run
+
+```sh
+yarn
+yarn dev
+yarn build
+yarn preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Author
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Vũ Tùng Lâm 22028235 UET
