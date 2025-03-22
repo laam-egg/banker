@@ -45,6 +45,9 @@ export function isVectorEqualTo(v1: Vector, v2: Vector): boolean {
     return v1.every((value, i) => value === v2[i]);
 }
 
-export function prettyPrintVector(v: any[]): string {
+export function prettyPrintVector<T>(v: T[]): string {
+    if (typeof v[0] === 'boolean') {
+        return "[ " + v.map(b => b ? "T" : "F").join(" ") + " ]";
+    }
     return "[ " + v.join(" ") + " ]";
 }
