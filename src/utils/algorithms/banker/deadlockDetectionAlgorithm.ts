@@ -1,6 +1,6 @@
-import { checkSameSize } from "../dimensional";
-import { Matrix } from "../matrices";
-import { addVectors, isVectorLessThanOrEqualTo, prettyPrintVector, Vector } from "../vectors";
+import { checkSameSize } from "../../dimensional";
+import { Matrix } from "../../matrices";
+import { addVectors, isVectorLessThanOrEqualTo, prettyPrintVector, Vector } from "../../vectors";
 import _ from "lodash";
 
 export type FinishVector = boolean[];

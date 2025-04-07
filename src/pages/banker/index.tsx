@@ -5,9 +5,10 @@ import { VectorInput } from "../../components/VectorInput";
 import { createMatrix } from "../../utils/matrices";
 import { createVector } from "../../utils/vectors";
 import TextArea from "antd/es/input/TextArea";
-import { safetyAlgorithm } from "../../utils/algorithms/safetyAlgorithm";
-import { bankerAlgorithm } from "../../utils/algorithms/bankerAlgorithm";
-import { deadlockDetectionAlgorithm } from "../../utils/algorithms/deadlockDetectionAlgorithm";
+import { safetyAlgorithm } from "../../utils/algorithms/banker/safetyAlgorithm";
+import { bankerAlgorithm } from "../../utils/algorithms/banker/bankerAlgorithm";
+import { deadlockDetectionAlgorithm } from "../../utils/algorithms/banker/deadlockDetectionAlgorithm";
+import { ButtonLink } from "../../components/ButtonLink";
 
 const ALL_ALGORITHMS = [
     { label: "Safety Algorithm", value: "safety" },
@@ -25,7 +26,7 @@ export default function Banker() {
     const [requestVector, setRequestVector] = useState<number[]>(createVector(numResources));
     const [requesterIndex, setRequesterIndex] = useState(0);
     const [availableVector, setAvailableVector] = useState<number[]>(createVector(numResources));
-    const [algorithm, setAlgorithm] = useState<"safety" | "banker" | "deadlock_detection">("safety");
+    const [algorithm, setAlgorithm] = useState<typeof ALL_ALGORITHMS[number]['value']>("safety");
 
     const [output, setOutput] = useState<Record<typeof ALL_ALGORITHMS[number]["value"], null | {
         verdictBoolean: boolean,
@@ -100,6 +101,7 @@ export default function Banker() {
             {
                 !dimensionsDetermined ? (
                     <>
+                        <ButtonLink to="/">Back</ButtonLink>
                         <Form layout="vertical" style={{ display: "flex", flexDirection: "column", alignItems: "stretch", justifyContent: "stretch" }}>
                             <Form.Item label="Number of processes (n rows):">
                                 <InputNumber

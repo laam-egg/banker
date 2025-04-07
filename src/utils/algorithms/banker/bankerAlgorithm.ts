@@ -1,5 +1,5 @@
-import { Matrix, prettyPrintMatrix, subtractMatrices } from "../matrices";
-import { addVectors, isVectorLessThanOrEqualTo, prettyPrintVector, subtractVectors, Vector } from "../vectors";
+import { Matrix, prettyPrintMatrix, subtractMatrices } from "../../matrices";
+import { addVectors, isVectorLessThanOrEqualTo, prettyPrintVector, subtractVectors, Vector } from "../../vectors";
 import { safetyAlgorithm } from "./safetyAlgorithm";
 import _ from "lodash";
 
