@@ -13,6 +13,7 @@ export default function Home() {
         }}>
           <ButtonLink to="/banker" type="primary">{"Banker"}</ButtonLink>
           <ButtonLink to="/page_replacement" type="primary">{"Thuật toán thay thế trang"}</ButtonLink>
+          <ButtonLink to="/hdd_scheduling" type="primary">{"Lập lịch đĩa HDD"}</ButtonLink>
         </div>
       </Col>
     </Row>

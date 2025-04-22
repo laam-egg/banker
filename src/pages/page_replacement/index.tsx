@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, InputNumber, Select } from "antd";
+import { Button, Checkbox, Form, InputNumber, Select } from "antd";
 import { ButtonLink } from "../../components/ButtonLink";
 import { useState } from "react";
 import { PageReplacementAlgorithmInput, PageReplacementAlgorithmOutput } from "../../utils/algorithms/page_replacement/base";
@@ -12,6 +12,7 @@ import { lfuAlgorithm, lfuAlgorithmReplacingLeastRecentlyUsedInCaseOfSameFreq } 
 import { useSavedState } from "../../hooks/useSavedState";
 import { mfuAlgorithm } from "../../utils/algorithms/page_replacement/mfuAlgorithm";
 import { secondChanceAlgorithm } from "../../utils/algorithms/page_replacement/secondChanceAlgorithm";
+import { convertToReferenceString, ReferenceStringInput, ReferenceStringSeparatorId, validateReferenceStringSeparatorId } from "../../components/ReferenceStringInput";
 
 const ALL_ALGORITHMS = [
     { label: "FIFO (First-In-First-Out)", value: "fifo" },
@@ -25,14 +26,6 @@ const ALL_ALGORITHMS = [
 ] as const satisfies Array<{ label: string, value: string }>;
 
 type AlgorithmId = typeof ALL_ALGORITHMS[number]['value'];
-
-const REFERENCE_STRING_SEPARATORS = [
-    { label: "Comma (,)", value: "comma" },
-    { label: "Semicolon (;)", value: "semicolon" },
-    { label: "Whitespaces (spaces, newlines, tabs...)", value: "whitespace" },
-] as const;
-
-type ReferenceStringSeparatorId = typeof REFERENCE_STRING_SEPARATORS[number]['value'];
 
 async function executeOneAlgorithm({
     algorithm, referenceStringInput, numFrames, referenceStringSeparator,
@@ -73,25 +66,6 @@ async function executeOneAlgorithm({
     }
 }
 
-export function convertToReferenceString({
-    referenceStringInput,
-    referenceStringSeparator,
-}: {
-    referenceStringInput: string,
-    referenceStringSeparator: ReferenceStringSeparatorId,
-}): string[] {
-    switch (referenceStringSeparator) {
-        case "comma":
-            return referenceStringInput.split(/,\s*/g);
-        case "semicolon":
-            return referenceStringInput.split(/;\s*/g);
-        case "whitespace":
-            return referenceStringInput.split(/\s+/g);
-        default:
-            throw new Error(`Unknown reference string separator: ${referenceStringSeparator}`);
-    }
-}
-
 export default function PageReplacement() {
     const [numFrames, setNumFrames] = useSavedState<number>(
         3,
@@ -105,15 +79,17 @@ export default function PageReplacement() {
         false,
         "PR_enableMultipleFrames",
     );
+
+    const [referenceStringSeparator, setReferenceStringSeparator] = useSavedState<ReferenceStringSeparatorId>(
+        "comma",
+        "PR_refStringSeparator",
+        validateReferenceStringSeparatorId,
+    );
     const [referenceStringInput, setReferenceStringInput] = useSavedState<string>(
         "",
         "PR_refString",
     );
-    const [referenceStringSeparator, setReferenceStringSeparator] = useSavedState<ReferenceStringSeparatorId>(
-        "comma",
-        "PR_refStringSeparator",
-        savedRefStringSeparator => REFERENCE_STRING_SEPARATORS.some(x => x.value === savedRefStringSeparator),
-    );
+
     const [algorithm, setAlgorithm] = useSavedState<AlgorithmId>(
         "fifo",
         "PR_algorithm",
@@ -203,21 +179,13 @@ export default function PageReplacement() {
                     </Form.Item>
                 )}
 
-                <Form.Item label="Reference string:">
-                    <Input
-                        style={{ width: "100%" }}
-                        value={referenceStringInput}
-                        onChange={e => setReferenceStringInput(e.target.value ?? "")}
-                    />
-                </Form.Item>
+            <ReferenceStringInput
+                referenceStringInput={referenceStringInput}
+                setReferenceStringInput={setReferenceStringInput}
+                referenceStringSeparator={referenceStringSeparator}
+                setReferenceStringSeparator={setReferenceStringSeparator}
+            />
 
-                <Form.Item label="Reference string Separator:">
-                    <Select
-                        options={[...REFERENCE_STRING_SEPARATORS]}
-                        value={referenceStringSeparator}
-                        onChange={setReferenceStringSeparator}
-                    />
-                </Form.Item>
             </Form>
 
             <Button type="primary" onClick={execute}>Run</Button>

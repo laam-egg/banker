@@ -1,6 +1,7 @@
 # OS Algorithms Implementation
 
 - [OS Algorithms Implementation](#os-algorithms-implementation)
+  - [HDD Scheduling Algorithms](#hdd-scheduling-algorithms)
   - [Page Replacement Algorithms](#page-replacement-algorithms)
     - [Example 1](#example-1)
     - [Example 2](#example-2)
@@ -14,6 +15,17 @@
         - [Image 2](#image-2)
     - [How to Run](#how-to-run)
   - [Author](#author)
+
+## HDD Scheduling Algorithms
+
+1. FCFS
+2. SSTF (see image below)
+3. SCAN
+4. C-SCAN
+5. LOOK
+6. C-LOOK
+
+![SSTF Algorithm](docs/images/hdd_scheduling_sstf.png)
 
 ## Page Replacement Algorithms
 
