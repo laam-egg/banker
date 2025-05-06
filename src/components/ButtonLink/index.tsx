@@ -4,14 +4,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export function ButtonLink({
-    to, type, children,
+    to, type, children, target,
 }: {
     to: string,
     type?: BaseButtonProps["type"],
     children: React.ReactNode,
+    target?: string,
 }) {
     return <>
-        <Link to={to}>
+        <Link to={to} target={target}>
             <Button type={type}>
                 {children}
             </Button>
