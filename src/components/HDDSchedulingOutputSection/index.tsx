@@ -136,7 +136,13 @@ export function HDDSchedulingOutputSection({
             : <>
             <h2>Result</h2>
             <div>
-                {`${output.numCylindersCameAcross} cylinders came across`}
+                <p>{`${output.numCylindersCameAcross} cylinders came across`}</p>
+                <p>{`${output.numCylindersCameAcrossIncludingJumping} cylinders came across including jumping`}</p>
+                <p>Path: <b style={{
+                    fontFamily: "monospace",
+                    fontSize: "1.5em",
+                }}>{`${output.headStatuses.map(x => x.cylinder).join(" → ")}`}</b></p>
+                <p>{`${output.numSeekOperations} seek operations`}</p>
             </div>
             <br />
             <div
