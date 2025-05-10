@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/plots": "^2.3.3",
     "antd": "^5.24.4",
+    "decimal.js": "^10.5.0",
     "lodash": "^4.17.21",
     "react": "18",
     "react-dom": "18",
