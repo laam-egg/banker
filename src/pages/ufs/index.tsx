@@ -8,6 +8,7 @@ import { useSavedState } from "../../hooks/useSavedState";
 import { deserializeMemorySize, MemorySize, serializeMemorySize, validateSavedMemorySize } from "../../utils/memorySize";
 import Decimal from "decimal.js";
 import { MemorySizeInput } from "../../components/MemorySizeInput";
+import { Link } from "react-router-dom";
 
 export default function UFS() {
     const [numDirectPointers, setNumDirectPointers] = useState(0);
@@ -44,6 +45,13 @@ export default function UFS() {
     return (
         <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
             <ButtonLink to="/">Back</ButtonLink>
+            <div style={{
+                color: "red",
+            }}>
+                <b>WARNING: Tool này có thể chạy sai.</b><br />
+                Với câu trắc nghiệm, nên thử nhân/chia kết quả của tool cho 2, 4, 8, 16... và so khớp.<br />
+                Bug reports are welcome: <Link to={"https://github.com/laam-egg/banker/pulls"} target="_blank">open a PR here on GitHub.</Link>
+            </div>
             <Form layout="vertical" style={{ display: "flex", flexDirection: "column", alignItems: "stretch", justifyContent: "stretch" }}>
                 <p>Hệ điều hành sử dụng i-node để quản lý các khối dữ liệu của tập tin.</p>
                 <p>I-node của mỗi tập tin chứa số hiệu của:</p>
