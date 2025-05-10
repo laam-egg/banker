@@ -31,6 +31,7 @@ export type HDDSchedulingAlgorithmOutput = {
     numCylindersCameAcross: number,
     numCylindersCameAcrossIncludingJumping: number,
     path: string,
+    servedRequests: string,
     input: HDDSchedulingAlgorithmInput,
 }
 
@@ -81,7 +82,9 @@ export function convertToFullOutput({
         lastCylinder = headStatus.cylinder;
     }
 
-    const path = [`[${input.startingCylinder}]`, ...headStatuses.map(x => x.cylinder)].join(" → ");
+    const cylindersInOrder = headStatuses.map(x => x.cylinder);
+    const servedRequests = cylindersInOrder.filter(x => input.referenceString.includes(x)).join(" → ");
+    const path = [`${input.startingCylinder}`, ...cylindersInOrder].join(" → ");
 
     return {
         headStatuses,
@@ -89,6 +92,7 @@ export function convertToFullOutput({
         numCylindersCameAcross,
         numCylindersCameAcrossIncludingJumping,
         path,
+        servedRequests,
         input,
     };
 }

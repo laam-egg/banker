@@ -134,28 +134,55 @@ export function HDDSchedulingOutputSection({
         output === null
             ? <></>
             : <>
-            <h2>Result</h2>
-            <div>
-                <p>{`${output.numCylindersCameAcross} cylinders came across`}</p>
-                <p>{`${output.numCylindersCameAcrossIncludingJumping} cylinders came across including jumping`}</p>
-                <p>Path: <b style={{
-                    fontFamily: "monospace",
-                    fontSize: "1.5em",
-                }}>{`${output.path}`}</b></p>
-                <p>{`${output.numSeekOperations} seek operations`}</p>
-            </div>
-            <br />
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    overflowX: "auto",
-                    overflowY: "auto",
-                    whiteSpace: "nowrap",
-                }}
-                ref={containerRef}
-            >
-            </div>
+                <h2>Result</h2>
+                <div>
+                    <p>{`${output.numCylindersCameAcross} cylinders came across`}</p>
+                    <p>{`${output.numCylindersCameAcrossIncludingJumping} cylinders came across including jumping`}</p>
+                    <PathComponent
+                        name="Sơ đồ đường đi của đầu đọc/ghi"
+                        content={`${output.path}`}
+                        color="red"
+                    />
+                    <PathComponent
+                        name="Thứ tự các yêu cầu được phục vụ"
+                        content={`${output.servedRequests}`}
+                        color="#ed7014"
+                    />
+                    <p></p>
+
+                    <p>{`${output.numSeekOperations} seek operations`}</p>
+                </div>
+                <br />
+                <div
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        overflowX: "auto",
+                        overflowY: "auto",
+                        whiteSpace: "nowrap",
+                    }}
+                    ref={containerRef}
+                >
+                </div>
             </>
     );
+}
+
+function PathComponent({
+    name,
+    content,
+    color,
+}: {
+    name: string,
+    content: string,
+    color: string,
+}) {
+    return <p>
+        {name}: <br />
+        <span style={{
+        fontFamily: "monospace",
+        fontSize: "1.5em",
+        color,
+        fontWeight: "bold",
+    }}>{`${content}`}</span></p>;
 }
