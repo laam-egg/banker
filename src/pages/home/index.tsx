@@ -18,6 +18,7 @@ export default function Home() {
           <ButtonLink to="/page_replacement" type="primary">{"Thuật toán thay thế trang"}</ButtonLink>
           <ButtonLink to="/hdd_scheduling" type="primary">{"Lập lịch đĩa HDD"}</ButtonLink>
           <ButtonLink to="/virtual_memory_mapping" type="primary">{'Giải dạng bài "Ánh xạ bộ nhớ ảo..."'}</ButtonLink>
+          <ButtonLink to="/ufs" type="primary">{"Tính toán Unix File System (UFS)"}</ButtonLink>
         </div>
       </Col>
     </Row>

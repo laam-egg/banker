@@ -7,6 +7,7 @@ const Banker = React.lazy(() => import('./pages/banker'));
 const PageReplacement = React.lazy(() => import('./pages/page_replacement'));
 const HDDScheduling = React.lazy(() => import('./pages/hdd_scheduling'));
 const VirtualMemory = React.lazy(() => import('./pages/virtual_memory'));
+const UFS = React.lazy(() => import('./pages/ufs'));
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/page_replacement" element={<PageReplacement />} />
         <Route path="/hdd_scheduling" element={<HDDScheduling />} />
         <Route path="/virtual_memory_mapping" element={<VirtualMemory />} />
+        <Route path="/ufs" element={<UFS />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
