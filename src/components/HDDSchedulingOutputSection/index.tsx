@@ -141,7 +141,7 @@ export function HDDSchedulingOutputSection({
                 <p>Path: <b style={{
                     fontFamily: "monospace",
                     fontSize: "1.5em",
-                }}>{`${output.headStatuses.map(x => x.cylinder).join(" → ")}`}</b></p>
+                }}>{`${output.path}`}</b></p>
                 <p>{`${output.numSeekOperations} seek operations`}</p>
             </div>
             <br />
